@@ -21,6 +21,7 @@
         <link href="{{ asset('assets/css/connect.min.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/dark_theme.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+        <livewire:styles />
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

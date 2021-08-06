@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
             'name' => 'Muhamad Iqbal Fadilah',
             'email' => 'laku0505@gmail.com',
             'password' => bcrypt('Market22'),
-            'role' => 'admin'
         ]);
     }
 }
