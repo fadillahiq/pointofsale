@@ -1,6 +1,7 @@
 ## Point Of Sale Laravel 8 with Livewire
 
 - Dashboard
+- Category
 
 ## Installation
 
