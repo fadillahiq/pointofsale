@@ -2,6 +2,7 @@
 
 - Dashboard
 - Category
+- Product
 
 ## Installation
 
