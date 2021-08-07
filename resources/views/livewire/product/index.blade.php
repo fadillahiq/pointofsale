@@ -1,9 +1,9 @@
 <div>
     @if ($formVisible)
         @if ($statusUpdate)
-            <livewire:category.update />
+            <livewire:product.update />
         @else
-            <livewire:category.create />
+            <livewire:product.create />
         @endif
     @endif
     <div class="row">
@@ -17,7 +17,7 @@
                             </div>
                         @endif
                     </div>
-                    <h5 class="card-title">Categories<button wire:click="createCategory" type="button" class="btn btn-primary btn-sm float-right pb-0"><i class="material-icons">add</i></button></h5>
+                    <h5 class="card-title">Products<button wire:click="createProduct" type="button" class="btn btn-primary btn-sm float-right pb-0"><i class="material-icons">add</i></button></h5>
                     <div class="d-flex justify-content-between mt-5">
                         <select class="form-control sm w-auto" wire:model="paginate">
                             <option value="10">10</option>
@@ -34,18 +34,26 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Code</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($categories as $category)
+                                @forelse ($products as $product)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $product->code }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>Rp. {{ number_format($product->price) }}</td>
+                                    <td>{{ $product->stock }}</td>
+                                    <td>{{ $product->category->name }}</td>
                                     <td>
-                                        <button wire:click="getCategory({{ $category->id }})" class="btn btn-warning btn-sm">Edit</button>
-                                        <button wire:click="deleteConfirm({{ $category->id }})" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                        <button wire:click="getProduct({{ $product->id }})" class="btn btn-warning btn-sm">Edit</button>
+                                        <button wire:click="deleteConfirm({{ $product->id }})" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
                                             Delete
                                         </button>
                                     </td>
@@ -59,7 +67,7 @@
                         </table>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination pagination-circle pl-2 pb-2">
-                                {{ $categories->links() }}
+                                {{ $products->links() }}
                             </ul>
                         </nav>
                     </div>
@@ -67,7 +75,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <i class="material-icons">close</i>
                                     </button>
@@ -77,7 +85,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" wire:click.prevent="deleteCategory" class="btn btn-danger close-modal" data-dismiss="modal">Delete</button>
+                                    <button type="button" wire:click.prevent="deleteProduct" class="btn btn-danger close-modal" data-dismiss="modal">Delete</button>
                                 </div>
                             </div>
                         </div>

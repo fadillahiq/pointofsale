@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $statusUpdate = false, $formVisible = false, $paginate, $search;
+    public $statusUpdate = false, $formVisible = false, $paginate, $search, $deleteId;
 
     use WithPagination;
 
@@ -59,15 +59,21 @@ class Index extends Component
         $this->emit('getCategory', $category);
     }
 
-    public function deleteCategory($id)
+    public function deleteConfirm($id)
     {
         if($id)
         {
-            $category = Category::find($id);
-            $category->delete();
-
-            session()->flash('message', 'Category successfully deleted.');
+            $this->deleteId = $id;
+        }else {
+            abort(404);
         }
+    }
+
+    public function deleteCategory()
+    {
+        Category::find($this->deleteId)->delete();
+
+        session()->flash('message', 'Category successfully deleted.');
     }
 
     public function formCloseHandler()

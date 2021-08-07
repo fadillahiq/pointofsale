@@ -10,4 +10,9 @@ class MenuController extends Controller
     {
         return view('menu.category');
     }
+
+    public function product()
+    {
+        return view('menu.product');
+    }
 }

@@ -10,8 +10,11 @@
                         <li class="sidebar-title">
                             Menu
                         </li>
-                        <li class="{{ request()->is('menu/category*') ? 'active-page' : '' }}">
-                            <a href="{{ url('menu/category') }}"><i class="material-icons">bookmark_border</i>Category</a>
+                        <li class="{{ request()->is('menu/category') ? 'active-page' : '' }}">
+                            <a href="{{ route('category') }}"><i class="material-icons">bookmark_border</i>Category</a>
+                        </li>
+                        <li class="{{ request()->is('menu/product') ? 'active-page' : '' }}">
+                            <a href="{{ route('product') }}"><i class="material-icons">inventory</i>Product</a>
                         </li>
                     </ul>
                 </div>

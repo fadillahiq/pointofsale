@@ -26,5 +26,6 @@ Auth::routes([
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 Route::prefix('menu')->group(function () {
-    Route::get('/category', [MenuController::class, 'category']);
+    Route::get('/category', [MenuController::class, 'category'])->name('category');
+    Route::get('/product', [MenuController::class, 'product'])->name('product');
 });
