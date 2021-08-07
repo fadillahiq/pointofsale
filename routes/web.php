@@ -25,7 +25,8 @@ Auth::routes([
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-Route::prefix('menu')->group(function () {
+Route::group(['prefix' => 'menu', 'middleware' => 'auth'], function() {
     Route::get('/category', [MenuController::class, 'category'])->name('category');
     Route::get('/product', [MenuController::class, 'product'])->name('product');
+    Route::get('/transaction', [MenuController::class, 'transaction'])->name('transaction');
 });

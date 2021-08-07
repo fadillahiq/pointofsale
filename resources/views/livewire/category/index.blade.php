@@ -12,9 +12,13 @@
                 <div class="card-body">
                     <div>
                         @if (session()->has('message'))
-                            <div class="alert alert-success">
-                                {{ session('message') }}
-                            </div>
+                        <script>
+                            Swal.fire(
+                             'Success',
+                             '{!! session('message') !!}',
+                             'success'
+                             )
+                        </script>
                         @endif
                     </div>
                     <h5 class="card-title">Categories<button wire:click="createCategory" type="button" class="btn btn-primary btn-sm float-right pb-0"><i class="material-icons">add</i></button></h5>

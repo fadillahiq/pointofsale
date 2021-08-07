@@ -8,13 +8,19 @@
                             <a href="{{ route('dashboard') }}" class="active"><i class="material-icons-outlined">dashboard</i>Dashboard</a>
                         </li>
                         <li class="sidebar-title">
-                            Menu
+                            Master Data
                         </li>
                         <li class="{{ request()->is('menu/category') ? 'active-page' : '' }}">
                             <a href="{{ route('category') }}"><i class="material-icons">bookmark_border</i>Category</a>
                         </li>
                         <li class="{{ request()->is('menu/product') ? 'active-page' : '' }}">
                             <a href="{{ route('product') }}"><i class="material-icons">inventory</i>Product</a>
+                        </li>
+                        <li class="sidebar-title">
+                            Menu
+                        </li>
+                        <li class="{{ request()->is('menu/transaction') ? 'active-page' : '' }}">
+                            <a href="{{ route('transaction') }}"><i class="material-icons">shopping_cart</i>Transaction</a>
                         </li>
                     </ul>
                 </div>

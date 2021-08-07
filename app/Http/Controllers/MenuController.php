@@ -15,4 +15,9 @@ class MenuController extends Controller
     {
         return view('menu.product');
     }
+
+    public function transaction()
+    {
+        return view('menu.transaction');
+    }
 }

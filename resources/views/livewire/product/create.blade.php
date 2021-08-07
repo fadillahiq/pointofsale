@@ -12,15 +12,18 @@
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" wire:model="price" aria-describedby="priceHelp" placeholder="Enter price" required>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" wire:model="price" aria-describedby="priceHelp" placeholder="Enter price" required>
+                                </div>
                             <small id="priceHelp" class="form-text text-muted">Must numbers !</small>
-
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
                             <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" wire:model="stock" aria-describedby="stockHelp" placeholder="Enter stock" required>
                             <small id="stockHelp" class="form-text text-muted">Must numbers minimal 1 !</small>
-
                         </div>
                         <div class="form-group">
                             <label for="category">Category</label>

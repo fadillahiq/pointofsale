@@ -3,18 +3,21 @@
         <div class="col-lg-8 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <form wire:submit.prevent="store">
+                    <form wire:submit.prevent="update">
                         <div class="form-group">
                             <label for="name">Product Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" wire:model="name" aria-describedby="nameHelp" placeholder="Enter product name" required>
                             <small id="nameHelp" class="form-text text-muted">Minimal 4 characters !</small>
-
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" wire:model="price" aria-describedby="priceHelp" placeholder="Enter price" required>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Rp.</span>
+                                    </div>
+                                    <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" wire:model="price" aria-describedby="priceHelp" placeholder="Enter price" required>
+                                </div>
                             <small id="priceHelp" class="form-text text-muted">Must numbers !</small>
-
                         </div>
                         <div class="form-group">
                             <label for="stock">Stock</label>
