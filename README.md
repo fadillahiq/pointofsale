@@ -3,6 +3,7 @@
 - Dashboard
 - Category
 - Product
+- Transaction
 
 ## Installation
 
