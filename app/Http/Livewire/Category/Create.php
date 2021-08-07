@@ -9,6 +9,8 @@ class Create extends Component
 {
     public $name;
 
+    protected $listeners = ['createCategory'];
+
     public function render()
     {
         return view('livewire.category.create');
@@ -17,6 +19,11 @@ class Create extends Component
     protected $rules = [
         'name' => 'required|min:4',
     ];
+
+    public function createCategory()
+    {
+        $this->name = '';
+    }
 
     private function resetInput()
     {

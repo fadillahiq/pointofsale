@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 
 class Index extends Component
 {
-    public $statusUpdate = false, $formVisible, $paginate, $search;
+    public $statusUpdate = false, $formVisible = false, $paginate, $search;
 
     use WithPagination;
 
@@ -21,6 +21,7 @@ class Index extends Component
         'formOpen' => 'formOpenHandler',
     ];
 
+    // Optional
     protected $queryString = ['search'];
 
     public function render()
@@ -41,6 +42,13 @@ class Index extends Component
     {
         $this->formVisible = false;
         session()->flash('message', 'Category successfully updated.');
+    }
+
+    public function createCategory()
+    {
+        $this->formVisible = true;
+        $this->statusUpdate = false;
+        $this->emit('createCategory');
     }
 
     public function getCategory($id)

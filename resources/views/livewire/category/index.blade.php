@@ -1,9 +1,9 @@
 <div>
     @if ($formVisible)
-        @if (! $statusUpdate)
-            <livewire:category.create />
-        @else
+        @if ($statusUpdate)
             <livewire:category.update />
+        @else
+            <livewire:category.create />
         @endif
     @endif
     <div class="row">
@@ -17,7 +17,7 @@
                             </div>
                         @endif
                     </div>
-                    <h5 class="card-title">Categories<button wire:click="formOpenHandler" class="btn btn-primary btn-sm float-right pb-0"><i class="material-icons">add</i></button></h5>
+                    <h5 class="card-title">Categories<button wire:click="createCategory" type="button" class="btn btn-primary btn-sm float-right pb-0"><i class="material-icons">add</i></button></h5>
                     <div class="d-flex justify-content-between mt-5">
                         <select class="form-control sm w-auto" wire:model="paginate">
                             <option value="10">10</option>
@@ -66,3 +66,14 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        var toggle  = document.getElementById("toggle");
+        var content = document.getElementById("content");
+
+        toggle.addEventListener("click", function() {
+        content.style.display = (content.dataset.toggled ^= 1) ? "block" : "none";
+        });
+    </script>
+@endpush
