@@ -3,7 +3,7 @@
         <div class="col-lg-12 mx-auto">
             <div class="card card-transactions">
                 <div class="card-body">
-                    <h5 class="card-title">Report</h5>
+                    <h5 class="card-title">Report<button wire:click="export_mapping" type="button" class="btn btn-success btn-sm float-right pb-0"><i class="material-icons">cloud_download</i></button></h5>
                     <div class="d-flex justify-content-between mt-5">
                         <select class="form-control sm w-auto" wire:model="paginate">
                             <option value="10">10</option>

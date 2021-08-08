@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire\Report;
 
+use App\Exports\OrderExport;
 use App\Models\Order;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Barryvdh\DomPDF\Facade;
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class Index extends Component
@@ -45,5 +47,9 @@ class Index extends Component
                                                         })
                                                         ->paginate($this->paginate)
         ]);
+    }
+
+    public function export_mapping() {
+        return Excel::download( new OrderExport(), 'order.xlsx') ;
     }
 }
