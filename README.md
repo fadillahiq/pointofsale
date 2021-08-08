@@ -3,7 +3,9 @@
 - Dashboard
 - Category
 - Product
+- User
 - Transaction
+- Report (80%)
 
 ## Installation
 
