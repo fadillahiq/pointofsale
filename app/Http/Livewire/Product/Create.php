@@ -27,6 +27,11 @@ class Create extends Component
         'category_id' => 'required'
     ];
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function createProduct()
     {
         $this->name = '';

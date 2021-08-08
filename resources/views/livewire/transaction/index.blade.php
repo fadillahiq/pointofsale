@@ -6,19 +6,27 @@
         }
         @media screen and (max-width: 767px) {
             .mobile-space {margin-top:10px;}
+            .quantity {margin-top:10px;}
         }
     </style>
         <div class="card-body border-bottom">
+            <h5 class="card-title">Transactions</h5>
             <div class="form-group pb-5">
                 <form class="row mt-3" wire:submit.prevent="store">
-                    <div class="col-lg-3">
-                        <select class="form-control @error('product_id') is-invalid @enderror" wire:model="product_id" required>
+                    <div class="col-lg-3" wire:ignore>
+                        <select class="form-control @error('product_id') is-invalid @enderror" wire:model="product_id" required data-live-search="true">
                                 <option value="">Choose Product</option>
                                 @foreach ($products as $product)
-                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                    <option value="{{ $product->id }}" data-tokens="{{ $product->name }}">{{ $product->name }}</option>
                                 @endforeach
                         </select>
                         @error('product_id') <span class="text-danger">Product already added !</span> @enderror
+                    </div>
+                    <div class="col-lg-3 quantity">
+                        <div class="form-group">
+                            <input type="number" class="form-control @error('qty') is-invalid @enderror" wire:model="qty"required placeholder="Enter quantity" />
+                        </div>
+                        @error('qty') <span class="text-danger">Quantity should not exceed stock and minimal 1 !</span> @enderror
                     </div>
                     <div class="col-lg-2 mobile-space">
                         <button type="submit" class="btn btn-success">Submit</button>
@@ -27,10 +35,23 @@
             </div>
 
             @if (session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session('message') }}
-                </div>
+            <script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '{!! session('message') !!}'
+                })
+            </script>
             @endif
+            {{-- @if (session()->has('success'))
+            <script>
+                Swal.fire(
+                 'Success',
+                 '{!! session('success') !!}',
+                 'success'
+                 )
+            </script>
+            @endif --}}
         </div>
         <div class="card-body pb-5 mt-3">
             <div class="table-responsive">
@@ -56,7 +77,9 @@
                                             <span class="btn btn-danger btn-sm" wire:click="decrement({{ $transaction->id }})">-</span>
                                         @endif
                                         <input type="text" class="form-control qty text-center" value="{{ $transaction->qty }}" readonly>
-                                        <span class="btn btn-success btn-sm" wire:click="increment({{ $transaction->id }})">+</span>
+                                        @if($transaction->product->stock >= 1)
+                                            <span class="btn btn-success btn-sm hide" wire:click="increment({{ $transaction->id }})">+</span>
+                                        @endif
                                     </div>
                                 </td>
                                 <td>Rp. {{ number_format($transaction->product->price) }}</td>
@@ -83,9 +106,9 @@
                             <td style="border:none;"></td>
                             <td style="border:none;"></td>
                             <td style="border:none;"></td>
-                            <td style="text-align:right;">Payment</td>
+                            <td style="text-align:right;">Pay</td>
                             <td style="text-align:right;">
-                                <input type="number" wire:model="paymentInput" class="form-control">
+                                <input type="number" wire:model="payInput" class="form-control">
                             </td>
                         </tr>
                         <tr>
@@ -94,22 +117,20 @@
                             <td style="border:none;"></td>
                             <td style="text-align:right;">Change</td>
                             <td style="text-align:left;" colspan="10">
-                                Rp. {{ number_format($payment - $transactions->sum('total')) }}
+                                Rp. {{ number_format($pay - $transactions->sum('total')) }}
                             </td>
                         </tr>
                     </tfoot>
                 </table>
             </div>
             <div>
-                <button class="btn btn-success btn-sm float-right">Submit</button>
+                <button wire:click="submit" class="btn btn-success btn-sm float-right">Submit</button>
             </div>
         </div>
 </div>
 
 @push('styles')
-<link href="{{ asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 @endpush
 
 @push('scripts')
-<script src="{{ asset('assets/js/pages/select2.js') }}"></script>
 @endpush

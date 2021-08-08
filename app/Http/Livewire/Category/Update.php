@@ -25,6 +25,11 @@ class Update extends Component
         'name' => 'required|min:4',
     ];
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     private function resetInput()
     {
         $this->name = '';

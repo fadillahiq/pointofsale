@@ -11,6 +11,11 @@ class OrderProduct extends Model
 
     protected $table = 'order_products';
     protected $fillable = [
-        'order_id', 'product_id', 'qty', 'total'
+        'order_id', 'product_id', 'qty', 'total', 'created_at', 'updated_at'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
 }

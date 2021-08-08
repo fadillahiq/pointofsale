@@ -16,11 +16,19 @@
                         <li class="{{ request()->is('menu/product') ? 'active-page' : '' }}">
                             <a href="{{ route('product') }}"><i class="material-icons">inventory</i>Product</a>
                         </li>
+                        @role('admin')
+                        <li class="{{ request()->is('menu/user') ? 'active-page' : '' }}">
+                            <a href="{{ route('user') }}"><i class="material-icons">people</i>User</a>
+                        </li>
+                        @endrole
                         <li class="sidebar-title">
                             Menu
                         </li>
                         <li class="{{ request()->is('menu/transaction') ? 'active-page' : '' }}">
                             <a href="{{ route('transaction') }}"><i class="material-icons">shopping_cart</i>Transaction</a>
+                        </li>
+                        <li class="{{ request()->is('menu/report') ? 'active-page' : '' }}">
+                            <a href="{{ route('report') }}"><i class="material-icons">summarize</i>Report</a>
                         </li>
                     </ul>
                 </div>

@@ -20,6 +20,11 @@ class Create extends Component
         'name' => 'required|min:4',
     ];
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function createCategory()
     {
         $this->name = '';

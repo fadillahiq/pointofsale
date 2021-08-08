@@ -34,6 +34,11 @@ class Update extends Component
         'category_id' => 'required'
     ];
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     private function resetInput()
     {
         $this->name = '';
