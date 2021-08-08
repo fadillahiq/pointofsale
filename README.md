@@ -5,7 +5,7 @@
 - Product
 - User
 - Transaction
-- Report (80%)
+- Report
 
 ## Installation
 
