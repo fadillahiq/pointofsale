@@ -46,7 +46,7 @@ class Index extends Component
             $product = Product::where('id', $this->product_id)->first();
 
             $this->validate([
-                'product_id' => 'required|unique:transactions',
+                'product_id' => 'required|unique:transactions,product_id',
                 'qty' => 'required|integer|min:1|max:'.$product->stock
             ]);
 

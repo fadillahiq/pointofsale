@@ -13,11 +13,11 @@
             <h5 class="card-title">Transactions</h5>
             <div class="form-group pb-5">
                 <form class="row mt-3" wire:submit.prevent="store">
-                    <div class="col-lg-3" wire:ignore>
-                        <select class="form-control @error('product_id') is-invalid @enderror" wire:model="product_id" required data-live-search="true">
+                    <div class="col-lg-3">
+                        <select class="form-control @error('product_id') is-invalid @enderror" wire:model="product_id" required>
                                 <option value="">Choose Product</option>
                                 @foreach ($products as $product)
-                                    <option value="{{ $product->id }}" data-tokens="{{ $product->name }}">{{ $product->name }}</option>
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
                                 @endforeach
                         </select>
                         @error('product_id') <span class="text-danger">Product already added !</span> @enderror

@@ -50,6 +50,6 @@ class Index extends Component
     }
 
     public function export_mapping() {
-        return Excel::download( new OrderExport(), 'order.xlsx') ;
+        return Excel::download( new OrderExport(), 'order.xlsx');
     }
 }
